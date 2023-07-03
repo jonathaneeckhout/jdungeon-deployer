@@ -8,9 +8,9 @@
       git:
         repo: https://github.com/jonathaneeckhout/database.git
         dest: /root/repos/database
-        version: v1.0.0
+        version: main
         force: yes
-    
+
     - name: Create .env file
       copy:
         dest: "/root/repos/database/.env"
