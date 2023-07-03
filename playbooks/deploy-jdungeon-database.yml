@@ -1,0 +1,29 @@
+---
+- name: Install GitHub repo and run docker-compose
+  hosts: all
+  become: true
+  vars:
+    env_file_content: "{{ lookup('env','ENV_FILE') }}"
+  tasks:
+    - name: Clone GitHub repository
+      git:
+        repo: https://github.com/jonathaneeckhout/database.git
+        dest: /root/repos/database
+        version: v1.0.0
+        force: yes
+    
+    - name: Create .env file
+      copy:
+        dest: "/root/repos/database/.env"
+        content: |
+          "{{ env_file_content }}"
+
+    - name: Install Docker and Docker Compose
+      apt:
+        name: ['docker.io', 'docker-compose']
+        state: present
+
+    - name: Build and start containers
+      command:
+        cmd: docker-compose up -d
+        chdir: /root/repos/database
