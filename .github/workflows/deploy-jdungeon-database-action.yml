@@ -15,8 +15,8 @@ jobs:
           # Optional, SSH private key
           key: ${{secrets.SSH_KEY}}
           # Optional, literal inventory file contents
-          inventory: |
-            [all]
-            server1 ansible_host=jdungeon.org ansible_user=root
+          # inventory: |
+          #   [all]
+          #   server1 ansible_host=jdungeon.org ansible_user=root
           options: |
-            --ssh-common-args='-o StrictHostKeyChecking=no'
+            -i inventory.ini
