@@ -1,15 +1,21 @@
-- name: Run playbook
-  uses: dawidd6/action-ansible-playbook@v2
-  with:
-    # Required, playbook filepath
-    playbook: deploy-jdungeon-database.yml
-    # Optional, directory where playbooks live
-    directory: ./playbooks/
-    # Optional, SSH private key
-    key: ${{secrets.SSH_KEY}}
-    # Optional, literal inventory file contents
-    inventory: |
-      [all]
-      jdungeon.org
-    options: |
-      --verbose
+name: Deploy jdungeon-database
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          # Required, playbook filepath
+          playbook: deploy-jdungeon-database.yml
+          # Optional, directory where playbooks live
+          directory: ./playbooks/
+          # Optional, SSH private key
+          key: ${{secrets.SSH_KEY}}
+          # Optional, literal inventory file contents
+          inventory: |
+            [all]
+            jdungeon.org
+          options: |
+            --verbose
