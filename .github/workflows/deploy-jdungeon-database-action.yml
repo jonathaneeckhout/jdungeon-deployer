@@ -17,6 +17,6 @@ jobs:
           # Optional, literal inventory file contents
           inventory: |
             [all]
-            jdungeon.org
+            server1 ansible_host=jdungeon.org ansible_user=root
           options: |
             --verbose
