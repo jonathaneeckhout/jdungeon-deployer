@@ -19,5 +19,5 @@ jobs:
             [all]
             server1 ansible_host=${{secrets.SSH_HOST}} ansible_user=${{secrets.SSH_USER}}
           options: |
-            --extra-vars ENV_FILE=${{secrets.ENV_FILE}}
+            --extra-vars ENV_FILE='${{secrets.ENV_FILE}}'
             --verbose
