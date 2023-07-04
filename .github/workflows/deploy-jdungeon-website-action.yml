@@ -1,13 +1,13 @@
-name: Deploy jdungeon-database
+name: Deploy jdungeon-website
 on: [push]
 jobs:
-  deploy-database:
+  deploy-website:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: 'Create env file'
         run: |
-          echo "${{ secrets.DATABASE_ENV_FILE }}" > ./playbooks/.env
+          echo "${{ secrets.WEBSITE_ENV_FILE }}" > ./playbooks/.env
       - name: 'show dir content'
         run: |
           ls -al
@@ -15,7 +15,7 @@ jobs:
         uses: dawidd6/action-ansible-playbook@v2
         with:
           # Required, playbook filepath
-          playbook: deploy-jdungeon-database.yml
+          playbook: deploy-jdungeon-wesbite.yml
           # Optional, directory where playbooks live
           directory: ./playbooks/
           # Optional, SSH private key
