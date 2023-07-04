@@ -1,8 +1,6 @@
 - name: Install GitHub repo and run docker-compose
   hosts: all
   become: true
-  vars:
-    env_file_content: "{{ lookup('env','ENV_FILE') }}"
   tasks:
     - name: Clone GitHub repository
       git:
@@ -11,11 +9,10 @@
         version: v1.0.0
         force: yes
     
-    - name: Create .env file
+    - name: Copy .env file
       copy:
+        src: ".env"
         dest: "/root/repos/jdungeon-database/.env"
-        content: |
-          "{{ env_file_content }}"
 
     - name: Install Docker and Docker Compose
       apt:
