@@ -1,5 +1,10 @@
 name: Deploy jdungeon-website
-on: [push]
+# Only trigger, when the deploy database workflow succeeded
+on:
+  workflow_run:
+    workflows: ["Deploy jdungeon-database"]
+    types:
+      - completed
 jobs:
   deploy-website:
     runs-on: ubuntu-latest
