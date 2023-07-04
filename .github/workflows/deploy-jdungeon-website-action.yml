@@ -15,7 +15,7 @@ jobs:
         uses: dawidd6/action-ansible-playbook@v2
         with:
           # Required, playbook filepath
-          playbook: deploy-jdungeon-wesbite.yml
+          playbook: deploy-jdungeon-website.yml
           # Optional, directory where playbooks live
           directory: ./playbooks/
           # Optional, SSH private key
