@@ -1,25 +1,32 @@
 - name: Install GitHub repo and run docker-compose
   hosts: all
   become: true
+  vars:
+    dest_repo: /root/repos/jdungeon-database
   tasks:
     - name: Clone GitHub repository
       git:
         repo: git@github.com:jonathaneeckhout/jdungeon-database.git
-        dest: /root/repos/jdungeon-database
+        dest: {{ dest_repo }}
         version: v1.0.0
         force: yes
     
     - name: Copy .env file
       copy:
         src: "./.env"
-        dest: "/root/repos/jdungeon-database/.env"
+        dest: "{{ dest_repo }}/.env"
 
     - name: Install Docker and Docker Compose
       apt:
         name: ['docker.io', 'docker-compose']
         state: present
 
+    - name: Remove previously installed containers
+      command:
+        cmd: docker-compose down --remove-orphans --rmi local
+        chdir: {{ dest_repo }}
+
     - name: Build and start containers
       command:
-        cmd: docker-compose up -d
-        chdir: /root/repos/jdungeon-database
+        cmd: docker-compose up -d --force-recreate
+        chdir: {{ dest_repo }}
