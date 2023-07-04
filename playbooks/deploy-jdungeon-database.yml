@@ -7,13 +7,13 @@
     - name: Clone GitHub repository
       git:
         repo: git@github.com:jonathaneeckhout/jdungeon-database.git
-        dest: /root/repos/database
+        dest: /root/repos/jdungeon-database
         version: v1.0.0
         force: yes
     
     - name: Create .env file
       copy:
-        dest: "/root/repos/database/.env"
+        dest: "/root/repos/jdungeon-database/.env"
         content: |
           "{{ env_file_content }}"
 
@@ -25,4 +25,4 @@
     - name: Build and start containers
       command:
         cmd: docker-compose up -d
-        chdir: /root/repos/database
+        chdir: /root/repos/jdungeon-database
