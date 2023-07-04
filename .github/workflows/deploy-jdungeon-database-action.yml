@@ -9,7 +9,7 @@ jobs:
         uses: dawidd6/action-ansible-playbook@v2
         with:
           # Required, playbook filepath
-          playbook: test.yml
+          playbook: deploy-jdungeon-database.yml
           # Optional, directory where playbooks live
           directory: ./playbooks/
           # Optional, SSH private key
@@ -17,4 +17,6 @@ jobs:
           # Optional, literal inventory file contents
           inventory: |
             [all]
-            server1 ansible_host=jdungeon.org ansible_user=root
+            server1 ansible_host=${{secrets.SSH_HOST}} ansible_user=${{secrets.SSH_USER}}
+          options: |
+            --verbose

@@ -6,11 +6,11 @@
   tasks:
     - name: Clone GitHub repository
       git:
-        repo: https://github.com/jonathaneeckhout/database.git
+        repo: git@github.com:jonathaneeckhout/jdungeon-database.git
         dest: /root/repos/database
-        version: main
+        version: v1.0.0
         force: yes
-
+    
     - name: Create .env file
       copy:
         dest: "/root/repos/database/.env"

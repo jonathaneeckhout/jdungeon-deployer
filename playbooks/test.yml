@@ -1,6 +1,0 @@
-- name: Test Action
-  hosts: all
-  tasks:
-    - name: Copy file
-      copy:
-        dest: /tmp/requirements.yml
