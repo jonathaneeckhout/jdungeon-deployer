@@ -1,0 +1,30 @@
+name: Deploy jdungeon-common-server
+# Only trigger, when the deploy database workflow succeeded
+on:
+  workflow_run:
+    workflows: ["Deploy jdungeon-database"]
+    types:
+      - completed
+jobs:
+  jdungeon-common-server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: 'Create env file'
+        run: |
+          echo "${{ secrets.COMMON_SERVER_ENV_FILE }}" > ./playbooks/.env
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          # Required, playbook filepath
+          playbook: jdungeon-common-server.yml
+          # Optional, directory where playbooks live
+          directory: ./playbooks/
+          # Optional, SSH private key
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          # Optional, literal inventory file contents
+          inventory: |
+            [all]
+            server1 ansible_host=${{secrets.SSH_HOST}} ansible_user=${{secrets.SSH_USER}}
+          options: |
+            --verbose
