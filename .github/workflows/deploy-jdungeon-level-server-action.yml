@@ -8,7 +8,7 @@ on:
 
 env:
   GODOT_VERSION: "4.1"
-  EXPORT_NAME: jdungeon-level-server
+  EXPORT_NAME: Jdungeon-level-server
   PROJECT_PATH: ./
 
 jobs:

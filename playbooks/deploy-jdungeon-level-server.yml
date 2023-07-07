@@ -21,8 +21,13 @@
         src: "{{ item.src }}"
         dest: "{{ dest_repo }}/build/{{ item.dest }}"
       with_items:
-        - { src: "jdungeon-level-server.pck", dest: "linux/" }
-        - { src: "jdungeon-level-server.x86_64", dest: "linux/" }
+        - { src: "Jdungeon-level-server.pck", dest: "linux/" }
+        - { src: "Jdungeon-level-server.x86_64", dest: "linux/" }
+
+    - name: make file executable
+      file:
+        path: "{{ dest_repo }}/build/linux/Jdungeon-level-server.x86_64"
+        mode: u+x
 
     - name: Install Docker and Docker Compose
       apt:
