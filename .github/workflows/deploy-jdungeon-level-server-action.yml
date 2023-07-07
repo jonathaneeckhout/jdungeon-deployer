@@ -12,7 +12,7 @@ env:
   PROJECT_PATH: ./
 
 jobs:
-  build-jdungeon-level-server:
+  build:
     runs-on: ubuntu-latest
     container:
       image: barichello/godot-ci:4.1
@@ -37,7 +37,8 @@ jobs:
         with:
           name: linux
           path: build/linux
-  deploy-jdungeon-level-server:
+  deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
