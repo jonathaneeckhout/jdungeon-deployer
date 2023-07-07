@@ -7,14 +7,14 @@
     - name: Clone GitHub repository
       git:
         repo: git@github.com:jonathaneeckhout/jdungeon-database.git
-        dest: "{{ dest_repo }}"
+        dest: '{{ dest_repo }}'
         version: v1.0.0
         force: yes
-    
+
     - name: Copy .env file
       copy:
-        src: "./.env"
-        dest: "{{ dest_repo }}/.env"
+        src: './.env'
+        dest: '{{ dest_repo }}/.env'
 
     - name: Install Docker and Docker Compose
       apt:
@@ -24,9 +24,14 @@
     - name: Remove previously installed containers
       command:
         cmd: docker-compose down --remove-orphans --rmi local
-        chdir: "{{ dest_repo }}"
+        chdir: '{{ dest_repo }}'
 
     - name: Build and start containers
       command:
         cmd: docker-compose up -d --force-recreate
-        chdir: "{{ dest_repo }}"
+        chdir: '{{ dest_repo }}'
+
+    - name: Remove the .env file
+      file:
+        path: '{{ dest_repo }}/.env'
+        state: absent

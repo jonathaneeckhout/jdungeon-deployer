@@ -1,23 +1,29 @@
-name: Deploy jdungeon-website
-# Only trigger, when the deploy database workflow succeeded
+name: Deploy jdungeon-level-server
+# Only trigger, when the deploy common workflow succeeded
 on:
   workflow_run:
-    workflows: ["Deploy jdungeon-database"]
+    workflows: ["Deploy jdungeon-common-server"]
     types:
       - completed
 jobs:
-  deploy-website:
+  jdungeon-level-server:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: 'Create env file'
         run: |
-          echo "${{ secrets.WEBSITE_ENV_FILE }}" > ./playbooks/.env
+          echo "${{ secrets.LEVEL_SERVER_ENV_FILE }}" > ./playbooks/.env
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: linux
+      - name: WhatDoWeHave
+        run: ls -al
       # - name: Run playbook
       #   uses: dawidd6/action-ansible-playbook@v2
       #   with:
       #     # Required, playbook filepath
-      #     playbook: deploy-jdungeon-website.yml
+      #     playbook: deploy-jdungeon-level-server.yml
       #     # Optional, directory where playbooks live
       #     directory: ./playbooks/
       #     # Optional, SSH private key

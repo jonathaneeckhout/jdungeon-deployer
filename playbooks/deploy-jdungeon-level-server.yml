@@ -2,13 +2,13 @@
   hosts: all
   become: true
   vars:
-    dest_repo: /root/repos/jdungeon-common-server
+    dest_repo: /root/repos/jdungeon-level-server
   tasks:
     - name: Clone GitHub repository
       git:
-        repo: git@github.com:jonathaneeckhout/jdungeon-common-server.git
+        repo: git@github.com:jonathaneeckhout/jdungeon-level-server.git
         dest: '{{ dest_repo }}'
-        version: v0.0.4
+        version: v0.0.3
         force: yes
 
     - name: Copy .env file
