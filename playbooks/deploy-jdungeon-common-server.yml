@@ -8,7 +8,7 @@
       git:
         repo: git@github.com:jonathaneeckhout/jdungeon-common-server.git
         dest: '{{ dest_repo }}'
-        version: v0.0.4
+        version: v0.0.6
         force: yes
 
     - name: Copy .env file
