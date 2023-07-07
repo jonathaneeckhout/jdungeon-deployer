@@ -16,6 +16,11 @@
         src: './.env'
         dest: '{{ dest_repo }}/.env'
 
+    - name: Copy .init.json file
+      copy:
+        src: '.init.json'
+        dest: '{{ dest_repo }}/.init.json'
+
     - name: Install Docker and Docker Compose
       apt:
         name: ['docker.io', 'docker-compose']
@@ -34,4 +39,9 @@
     - name: Remove the .env file
       file:
         path: '{{ dest_repo }}/.env'
+        state: absent
+
+    - name: Remove the .init.json file
+      file:
+        path: '{{ dest_repo }}/.init.json'
         state: absent

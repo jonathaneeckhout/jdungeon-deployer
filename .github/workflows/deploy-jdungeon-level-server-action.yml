@@ -46,23 +46,24 @@ jobs:
         run: |
           echo "${{ secrets.LEVEL_SERVER_ENV_FILE }}" > ./playbooks/.env
       - name: Download artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: linux
+          path: playbooks
       - name: WhatDoWeHave
-        run: ls -al
-      # - name: Run playbook
-      #   uses: dawidd6/action-ansible-playbook@v2
-      #   with:
-      #     # Required, playbook filepath
-      #     playbook: deploy-jdungeon-level-server.yml
-      #     # Optional, directory where playbooks live
-      #     directory: ./playbooks/
-      #     # Optional, SSH private key
-      #     key: ${{secrets.SSH_PRIVATE_KEY}}
-      #     # Optional, literal inventory file contents
-      #     inventory: |
-      #       [all]
-      #       server1 ansible_host=${{secrets.SSH_HOST}} ansible_user=${{secrets.SSH_USER}}
-      #     options: |
-      #       --verbose
+        run: ls -al playbooks
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          # Required, playbook filepath
+          playbook: deploy-jdungeon-level-server.yml
+          # Optional, directory where playbooks live
+          directory: ./playbooks/
+          # Optional, SSH private key
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          # Optional, literal inventory file contents
+          inventory: |
+            [all]
+            server1 ansible_host=${{secrets.SSH_HOST}} ansible_user=${{secrets.SSH_USER}}
+          options: |
+            --verbose

@@ -16,6 +16,14 @@
         src: './.env'
         dest: '{{ dest_repo }}/.env'
 
+    - name: Copy game files
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ dest_repo }}/build/{{ item.dest }}"
+      with_items:
+        - { src: "jdungeon-level-server.pck", dest: "linux/" }
+        - { src: "jdungeon-level-server.x86_64", dest: "linux/" }
+
     - name: Install Docker and Docker Compose
       apt:
         name: ['docker.io', 'docker-compose']

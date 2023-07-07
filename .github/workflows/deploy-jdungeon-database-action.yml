@@ -8,18 +8,18 @@ jobs:
       - name: 'Create env file'
         run: |
           echo "${{ secrets.DATABASE_ENV_FILE }}" > ./playbooks/.env
-      # - name: Run playbook
-      #   uses: dawidd6/action-ansible-playbook@v2
-      #   with:
-      #     # Required, playbook filepath
-      #     playbook: deploy-jdungeon-database.yml
-      #     # Optional, directory where playbooks live
-      #     directory: ./playbooks/
-      #     # Optional, SSH private key
-      #     key: ${{secrets.SSH_PRIVATE_KEY}}
-      #     # Optional, literal inventory file contents
-      #     inventory: |
-      #       [all]
-      #       server1 ansible_host=${{secrets.SSH_HOST}} ansible_user=${{secrets.SSH_USER}}
-      #     options: |
-      #       --verbose
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          # Required, playbook filepath
+          playbook: deploy-jdungeon-database.yml
+          # Optional, directory where playbooks live
+          directory: ./playbooks/
+          # Optional, SSH private key
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          # Optional, literal inventory file contents
+          inventory: |
+            [all]
+            server1 ansible_host=${{secrets.SSH_HOST}} ansible_user=${{secrets.SSH_USER}}
+          options: |
+            --verbose
