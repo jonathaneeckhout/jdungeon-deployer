@@ -34,10 +34,13 @@ jobs:
     steps:
       - name: executing remote ssh commands
         uses: appleboy/ssh-action@v0.1.10
+        env:
+          PGPASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: PGPASSWORD
           script: |
             apt-get install -y postgresql-client
             psql -h ${{ secrets.POSTGRES_HOST }} -p ${{ secrets.POSTGRES_PORT }} -U ${{ secrets.POSTGRES_USER }} -d ${{ secrets.POSTGRES_DB }} -c "DELETE FROM levels;"
