@@ -12,6 +12,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
       STARTER_LEVEL: ${STARTER_LEVEL}
       STARTER_POS: ${STARTER_POS}
+      APP_PORT: ${APP_PORT}
       APP_CRT: ${APP_CRT}
       APP_KEY: ${APP_KEY}
     volumes:
