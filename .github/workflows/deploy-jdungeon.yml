@@ -11,8 +11,8 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "docker-compose/docker-compose-jdungeon-database.yml"
-          target: jdungeon-database/docker-compose.yml
+          source: "jdungeon-database/docker-compose.yml"
+          target: ./
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v0.1.10
         with:
