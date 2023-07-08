@@ -4,17 +4,10 @@
   vars:
     dest_repo: /root/repos/jdungeon-database
   tasks:
-    - name: Clone GitHub repository
-      git:
-        repo: git@github.com:jonathaneeckhout/jdungeon-database.git
-        dest: '{{ dest_repo }}'
-        version: v1.0.0
-        force: yes
-
-    - name: Copy .env file
+    - name: Copy docker-compose file file
       copy:
-        src: './.env'
-        dest: '{{ dest_repo }}/.env'
+        src: './docker-compose/docker-compose-jdungeon-database.yml'
+        dest: '{{ dest_repo }}/docker-compose.yml'
 
     - name: Install Docker and Docker Compose
       apt:

@@ -1,69 +1,69 @@
-name: Deploy jdungeon-level-server
-# Only trigger, when the deploy common workflow succeeded
-on:
-  workflow_run:
-    workflows: ["Deploy jdungeon-common-server"]
-    types:
-      - completed
+# name: Deploy jdungeon-level-server
+# # Only trigger, when the deploy common workflow succeeded
+# on:
+#   workflow_run:
+#     workflows: ["Deploy jdungeon-common-server"]
+#     types:
+#       - completed
 
-env:
-  GODOT_VERSION: "4.1"
-  EXPORT_NAME: Jdungeon-level-server
-  PROJECT_PATH: ./
+# env:
+#   GODOT_VERSION: "4.1"
+#   EXPORT_NAME: Jdungeon-level-server
+#   PROJECT_PATH: ./
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    container:
-      image: barichello/godot-ci:4.1
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          lfs: true
-          repository: jonathaneeckhout/jdungeon-level-server
-          ref: v0.0.3
-      - name: Setup
-        run: |
-          mkdir -v -p ~/.local/share/godot/export_templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-      - name: Linux Build
-        run: |
-          mkdir -v -p build/linux
-          cd $PROJECT_PATH
-          godot -v --headless --export-release "Linux/X11" build/linux/$EXPORT_NAME.x86_64
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3.0.0
-        with:
-          name: linux
-          path: build/linux
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: 'Create env file'
-        run: |
-          echo "${{ secrets.LEVEL_SERVER_ENV_FILE }}" > ./playbooks/.env
-      - name: Download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: linux
-          path: playbooks
-      - name: WhatDoWeHave
-        run: ls -al playbooks
-      - name: Run playbook
-        uses: dawidd6/action-ansible-playbook@v2
-        with:
-          # Required, playbook filepath
-          playbook: deploy-jdungeon-level-server.yml
-          # Optional, directory where playbooks live
-          directory: ./playbooks/
-          # Optional, SSH private key
-          key: ${{secrets.SSH_PRIVATE_KEY}}
-          # Optional, literal inventory file contents
-          inventory: |
-            [all]
-            server1 ansible_host=${{secrets.SSH_HOST}} ansible_user=${{secrets.SSH_USER}}
-          options: |
-            --verbose
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     container:
+#       image: barichello/godot-ci:4.1
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v3
+#         with:
+#           lfs: true
+#           repository: jonathaneeckhout/jdungeon-level-server
+#           ref: v0.0.4
+#       - name: Setup
+#         run: |
+#           mkdir -v -p ~/.local/share/godot/export_templates
+#           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+#       - name: Linux Build
+#         run: |
+#           mkdir -v -p build/linux
+#           cd $PROJECT_PATH
+#           godot -v --headless --export-release "Linux/X11" build/linux/$EXPORT_NAME.x86_64
+#       - name: Upload Artifact
+#         uses: actions/upload-artifact@v3.0.0
+#         with:
+#           name: linux
+#           path: build/linux
+#   deploy:
+#     needs: build
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: 'Create env file'
+#         run: |
+#           echo "${{ secrets.LEVEL_SERVER_ENV_FILE }}" > ./playbooks/.env
+#       - name: Download artifacts
+#         uses: actions/download-artifact@v3
+#         with:
+#           name: linux
+#           path: playbooks
+#       - name: WhatDoWeHave
+#         run: ls -al playbooks
+#       - name: Run playbook
+#         uses: dawidd6/action-ansible-playbook@v2
+#         with:
+#           # Required, playbook filepath
+#           playbook: deploy-jdungeon-level-server.yml
+#           # Optional, directory where playbooks live
+#           directory: ./playbooks/
+#           # Optional, SSH private key
+#           key: ${{secrets.SSH_PRIVATE_KEY}}
+#           # Optional, literal inventory file contents
+#           inventory: |
+#             [all]
+#             server1 ansible_host=${{secrets.SSH_HOST}} ansible_user=${{secrets.SSH_USER}}
+#           options: |
+#             --verbose
