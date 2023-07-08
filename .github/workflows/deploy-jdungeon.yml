@@ -27,4 +27,4 @@ jobs:
           script: |
             cd jdungeon-database
             docker-compose down --rmi all --remove-orphans
-            docker-compse up -d
+            docker-compose up -d
