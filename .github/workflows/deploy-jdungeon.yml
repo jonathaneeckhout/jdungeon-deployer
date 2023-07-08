@@ -1,4 +1,4 @@
-name: Deploy jdungeon-database
+name: Deploy jdungeon
 on: [push]
 jobs:
   deploy-database:
@@ -19,4 +19,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: ls -al jdungeon-database
+          script: |
+            cd jdungeon-database
+            docker-compose down --rmi all --remove-orphans
+            docker-compse up -d
