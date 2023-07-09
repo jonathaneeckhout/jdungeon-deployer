@@ -139,12 +139,12 @@ jobs:
           SECRET: ${{ secrets.SECRET }}
           LEVEL_CRT: ${{ secrets.CERT_PATH }}
           LEVEL_KEY: ${{ secrets.KEY_PATH }}
-          COMMON_SERVER_ADDRES: ${{ secrets.COMMON_SERVER_ADDRES }}
+          COMMON_SERVER_ADDRESS: ${{ secrets.COMMON_SERVER_ADDRESS }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: DEBUG,LEVEL_PORT,LEVEL_MAX_PEERS,LEVEL,SECRET,LEVEL_CRT,LEVEL_KEY,COMMON_SERVER_ADDRES
+          envs: DEBUG,LEVEL_PORT,LEVEL_MAX_PEERS,LEVEL,SECRET,LEVEL_CRT,LEVEL_KEY,COMMON_SERVER_ADDRESS
           script: |
             cd jdungeon-level-server
             docker-compose down --rmi all --remove-orphans

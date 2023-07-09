@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   app:
-    image: mawakajaka/jdungeon-level-server:v0.0.8
+    image: mawakajaka/jdungeon-level-server:v0.0.9
     restart: always
     environment:
       DEBUG: DEBUG
@@ -11,7 +11,7 @@ services:
       SECRET: ${SECRET}
       LEVEL_CRT: ${LEVEL_CRT}
       LEVEL_KEY: ${LEVEL_KEY}
-      COMMON_SERVER_ADDRES: ${COMMON_SERVER_ADDRES}
+      COMMON_SERVER_ADDRESS: ${COMMON_SERVER_ADDRESS}
     volumes:
       - ${LEVEL_CRT}:${LEVEL_CRT}
       - ${LEVEL_KEY}:${LEVEL_KEY}
