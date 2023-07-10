@@ -107,11 +107,12 @@ jobs:
           APP_PORT: ${{ secrets.APP_PORT }}
           APP_CRT: ${{ secrets.CERT_PATH }}
           APP_KEY: ${{ secrets.KEY_PATH }}
+          COOKIE_SECRET: ${{ secrets.COOKIE_SECRET }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: POSTGRES_HOST,POSTGRES_PORT,POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_DB,STARTER_LEVEL,STARTER_POS,APP_PORT,APP_CRT,APP_KEY
+          envs: POSTGRES_HOST,POSTGRES_PORT,POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_DB,STARTER_LEVEL,STARTER_POS,APP_PORT,APP_CRT,APP_KEY,COOKIE_SECRET
           script: |
             cd jdungeon-common-server
             docker-compose down --rmi all --remove-orphans
