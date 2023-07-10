@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: mawakajaka/jdungeon-common-server:v0.0.7
+    image: mawakajaka/jdungeon-common-server:v0.0.8
     restart: always
     environment:
       NODE_ENV: production
@@ -15,6 +15,7 @@ services:
       APP_PORT: ${APP_PORT}
       APP_CRT: ${APP_CRT}
       APP_KEY: ${APP_KEY}
+      COOKIE_SECRET: ${COOKIE_SECRET}
     volumes:
       - ${APP_CRT}:${APP_CRT}
       - ${APP_KEY}:${APP_KEY}
