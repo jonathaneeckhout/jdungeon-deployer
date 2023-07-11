@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   app:
-    image: mawakajaka/jdungeon-level-server:v0.0.11
+    image: mawakajaka/jdungeon-level-server:v0.0.12
     restart: always
     environment:
       DEBUG: DEBUG
