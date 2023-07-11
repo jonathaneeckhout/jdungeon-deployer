@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: mawakajaka/jdungeon-website:v1.0.11
+    image: mawakajaka/jdungeon-website:v1.0.12
     restart: always
     environment:
       NODE_ENV: production
@@ -19,4 +19,5 @@ services:
     volumes:
       - ${CERT_PATH}:${CERT_PATH}
       - ${KEY_PATH}:${KEY_PATH}
+      - ./images:/home/app/node_docker/public/images
     network_mode: "host"
