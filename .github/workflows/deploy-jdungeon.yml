@@ -194,8 +194,8 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "images/jdungeon-client-linux.zip,jdungeon-client-windows.zip"
-          target: ./jdungeon-website/images
+          source: "images/jdungeon-client-linux.zip,images/jdungeon-client-windows.zip"
+          target: ./jdungeon-website
 
   deploy-common-server:
     runs-on: ubuntu-latest
