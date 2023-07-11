@@ -1,5 +1,11 @@
 name: Deploy jdungeon
 on: [push]
+
+env:
+  GODOT_VERSION: "4.1"
+  EXPORT_NAME: Jdungeon-client
+  PROJECT_PATH: ./
+
 jobs:
   deploy-database:
     runs-on: ubuntu-latest
