@@ -164,7 +164,7 @@ jobs:
           path: build/windows
 
   push_client_images_to_webserver:
-    name: Push Docker image to Docker Hub
+    name: Push client images to webserver
     runs-on: ubuntu-latest
     needs: [build-client-linux, build-client-windows, deploy-website]
     steps:
