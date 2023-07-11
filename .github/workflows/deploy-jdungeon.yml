@@ -188,6 +188,14 @@ jobs:
         working-directory: images/windows
       - name: Remove the windows artifacts
         run: rm -rf images/windows
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "images/jdungeon-client-linux.zip,jdungeon-client-windows.zip"
+          target: ./jdungeon-website/images
 
   deploy-common-server:
     runs-on: ubuntu-latest
