@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: mawakajaka/jdungeon-website:v1.0.12
+    image: mawakajaka/jdungeon-website:v1.0.13
     restart: always
     environment:
       NODE_ENV: production
