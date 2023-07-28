@@ -5,7 +5,7 @@ env:
   GODOT_VERSION: "4.1"
   EXPORT_NAME: Jdungeon-client
   PROJECT_PATH: ./
-  JDUNGEON_CLIENT_REF: v0.0.14
+  JDUNGEON_CLIENT_REF: v0.0.15
 
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "jdungeon-database/docker-compose.yml"
+          source: "jdungeon-database"
           target: ./
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v0.1.10
