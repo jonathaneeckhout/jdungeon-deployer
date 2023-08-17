@@ -5,7 +5,7 @@ env:
   GODOT_VERSION: "4.1"
   EXPORT_NAME: Jdungeon-client
   PROJECT_PATH: ./
-  JDUNGEON_CLIENT_REF: v0.0.21
+  JDUNGEON_CLIENT_REF: v0.0.22
 
 
 jobs:
