@@ -21,4 +21,3 @@ services:
       - ${KEY_PATH}:${KEY_PATH}
       - ./images:/home/app/node_docker/public/images
     network_mode: "host"
-
