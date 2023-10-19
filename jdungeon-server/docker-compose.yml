@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  app:
+    image: mawakajaka/jdungeon-server:dev_add_docker_action
+    restart: always
+    environment:
+      DEBUG: ${DEBUG}
+      RUN_AS_SERVER: ${RUN_AS_SERVER}
+      SERVER_PORT: ${SERVER_PORT}
+      SERVER_CRT : ${SERVER_CRT}
+      SERVER_KEY: ${SERVER_KEY}
+      SERVER_MAX_PEERS: ${SERVER_MAX_PEERS}
+      SERVER_DATABASE_BACKEND: ${SERVER_DATABASE_BACKEND}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ${SERVER_CRT}:${SERVER_CRT}
+      - ${SERVER_KEY}:${SERVER_KEY}
+    network_mode: "host"

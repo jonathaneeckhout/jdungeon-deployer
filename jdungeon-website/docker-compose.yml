@@ -1,19 +1,10 @@
 version: '3'
 services:
   app:
-    image: mawakajaka/jdungeon-website:v2.0.0
+    image: mawakajaka/jdungeon-website:v3.0.2
     restart: always
     environment:
       NODE_ENV: production
-      POSTGRES_HOST: ${POSTGRES_HOST}
-      POSTGRES_PORT: ${POSTGRES_PORT}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-      MAIL_HOST: ${MAIL_HOST}
-      MAIL_PORT: ${MAIL_PORT}
-      MAIL_USER: ${MAIL_USER}
-      MAIL_KEY: ${MAIL_KEY}
       CERT_PATH: ${CERT_PATH}
       KEY_PATH: ${KEY_PATH}
     volumes:
