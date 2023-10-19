@@ -185,7 +185,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "jdungeon-level-server/docker-compose.yml"
+          source: "jdungeon-server/docker-compose.yml"
           target: ./
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v0.1.10
@@ -208,6 +208,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           envs: DEBUG, RUN_AS_SERVER, SERVER_PORT, SERVER_CRT, SERVER_KEY, SERVER_MAX_PEERS, SERVER_DATABASE_BACKEND, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB 
           script: |
-            cd jdungeon-level-server
+            cd jdungeon-server
             docker-compose down --rmi all --remove-orphans
             docker-compose up -d
