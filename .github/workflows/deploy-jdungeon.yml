@@ -2,7 +2,7 @@ name: Deploy jdungeon
 on: [push]
 
 env:
-  GODOT_VERSION: "4.1"
+  GODOT_VERSION: "4.1.2"
   EXPORT_NAME: jdungeon
   PROJECT_PATH: ./
   JDUNGEON_REF: dev_add_docker_action
@@ -24,6 +24,8 @@ jobs:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v0.1.10
         env:
+          POSTGRES_ADDRESS: ${{ secrets.POSTGRES_HOST }}
+          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
