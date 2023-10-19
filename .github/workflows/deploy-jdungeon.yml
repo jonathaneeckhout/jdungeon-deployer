@@ -24,8 +24,6 @@ jobs:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v0.1.10
         env:
-          POSTGRES_ADDRESS: ${{ secrets.POSTGRES_HOST }}
-          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
@@ -33,7 +31,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: POSTGRES_ADDRESS, POSTGRES_PORT, POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_DB
+          envs: POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_DB
           script: |
             cd jdungeon-database
             docker-compose down --rmi all --remove-orphans
@@ -95,7 +93,7 @@ jobs:
         run: |
           touch build/linux/.env
           echo "DEBUG=false" >> build/linux/.env
-          echo "RUN_AS_CLIENT=true" >> build/windows/.env
+          echo "RUN_AS_CLIENT=true" >> build/linux/.env
           echo "SERVER_ADDRESS=${{ vars.SERVER_ADDRESS }}" >> build/linux/.env
           echo "SERVER_PORT=${{ vars.SERVER_PORT }}" >> build/linux/.env
       - name: Upload Artifact
