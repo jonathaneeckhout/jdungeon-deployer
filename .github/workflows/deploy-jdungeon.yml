@@ -68,7 +68,7 @@ jobs:
 
   build-linux:
     name: Linux Export
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     container:
       image: mawakajaka/godot:v1.0.0
     steps:
@@ -104,7 +104,7 @@ jobs:
 
   build-windows:
     name: Windows Export
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     container:
       image: mawakajaka/godot:v1.0.0
     steps:
