@@ -33,7 +33,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_DB
+          envs: POSTGRES_ADDRESS, POSTGRES_PORT, POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_DB
           script: |
             cd jdungeon-database
             docker-compose down --rmi all --remove-orphans
