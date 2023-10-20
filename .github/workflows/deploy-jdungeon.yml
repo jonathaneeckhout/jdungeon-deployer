@@ -5,7 +5,7 @@ env:
   GODOT_VERSION: "4.1.2"
   EXPORT_NAME: jdungeon
   PROJECT_PATH: ./
-  JDUNGEON_REF: dev_add_docker_action
+  JDUNGEON_REF: main
 
 
 jobs:

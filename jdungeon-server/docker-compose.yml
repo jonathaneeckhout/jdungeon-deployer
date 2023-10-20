@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   app:
-    image: mawakajaka/jdungeon-server:dev_add_docker_action
+    image: mawakajaka/jdungeon-server:main
     restart: always
     environment:
       DEBUG: ${DEBUG}
