@@ -20,3 +20,4 @@ services:
       - ${SERVER_CRT}:${SERVER_CRT}
       - ${SERVER_KEY}:${SERVER_KEY}
     network_mode: "host"
+
