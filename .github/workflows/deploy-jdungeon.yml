@@ -176,12 +176,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: jdungeon-version
-          path: images/version
-      - name: mv version file
-        run: mv .version.json ../.version.json
-      - name: Remove the version artifacts
-        run: rm -rf images/version
-        working-directory: images/version
+          path: images
       - name: Download Linux artifacts
         uses: actions/download-artifact@v3
         with:
