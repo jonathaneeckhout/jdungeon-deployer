@@ -82,6 +82,7 @@ jobs:
   build-linux:
     name: Linux Export
     runs-on: ubuntu-22.04
+    needs: generate-version-file
     container:
       image: mawakajaka/godot:v1.0.0
     steps:
@@ -110,11 +111,11 @@ jobs:
           echo "SERVER_ADDRESS=${{ vars.SERVER_ADDRESS }}" >> build/linux/.env
           echo "SERVER_PORT=${{ vars.SERVER_PORT }}" >> build/linux/.env
           echo "VERSION_FILE=.version.json" >> build/linux/.env
-      - name: Add version file
-        run: |
-          TIMESTAMP=$(date -u +"%Y-%m-%dT%H-%M-%S")
-          JSON_CONTENT="{\"version\": \"${{ env.JDUNGEON_REF }}-$TIMESTAMP\"}"
-          echo $JSON_CONTENT > build/linux/.version.json
+      - name: Download Version artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: jdungeon-version
+          path: build/linux
       - name: Upload Artifact
         uses: actions/upload-artifact@v3.0.0
         with:
@@ -124,6 +125,7 @@ jobs:
   build-windows:
     name: Windows Export
     runs-on: ubuntu-22.04
+    needs: generate-version-file
     container:
       image: mawakajaka/godot:v1.0.0
     steps:
@@ -152,11 +154,11 @@ jobs:
           echo "SERVER_ADDRESS=${{ vars.SERVER_ADDRESS }}" >> build/windows/.env
           echo "SERVER_PORT=${{ vars.SERVER_PORT }}" >> build/windows/.env
           echo "VERSION_FILE=.version.json" >> build/windows/.env
-      - name: Add version file
-        run: |
-          TIMESTAMP=$(date -u +"%Y-%m-%dT%H-%M-%S")
-          JSON_CONTENT="{\"version\": \"${{ env.JDUNGEON_REF }}-$TIMESTAMP\"}"
-          echo $JSON_CONTENT > build/windows/.version.json
+      - name: Download Version artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: jdungeon-version
+          path: build/windows
       - name: Upload Artifact
         uses: actions/upload-artifact@v3.0.0
         with:
