@@ -261,7 +261,7 @@ jobs:
             POSTGRES_PASSWORD,
             POSTGRES_DB
           script: |
-            cd jdungeon-server
+            cd jdungeon-gateway
             docker-compose down --rmi all --remove-orphans
             docker-compose up -d
 
