@@ -324,3 +324,4 @@ jobs:
             docker-compose down --rmi all --remove-orphans
             docker-compose pull
             docker-compose up -d
+
