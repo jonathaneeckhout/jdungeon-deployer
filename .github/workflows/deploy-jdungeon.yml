@@ -216,7 +216,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "jdungeon-server/docker-compose.yml"
+          source: "jdungeon-gateway/docker-compose.yml"
           target: ./
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v0.1.10
@@ -242,23 +242,23 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: |
-            DEBUG
-            RUN_AS_GATEWAY
-            GATEWAY_CLIENT_PORT
-            GATEWAY_CLIENT_MAX_PEERS
-            GATEWAY_CLIENT_CRT
-            GATEWAY_CLIENT_KEY
-            GATEWAY_SERVER_PORT
-            GATEWAY_SERVER_MAX_PEERS
-            GATEWAY_SERVER_CRT
-            GATEWAY_SERVER_KEY
-            STARTER_SERVER
-            DATABASE_BACKEND
-            POSTGRES_ADDRESS
-            POSTGRES_PORT
-            POSTGRES_USER
-            POSTGRES_PASSWORD
+          envs: >
+            DEBUG,
+            RUN_AS_GATEWAY,
+            GATEWAY_CLIENT_PORT,
+            GATEWAY_CLIENT_MAX_PEERS,
+            GATEWAY_CLIENT_CRT,
+            GATEWAY_CLIENT_KEY,
+            GATEWAY_SERVER_PORT,
+            GATEWAY_SERVER_MAX_PEERS,
+            GATEWAY_SERVER_CRT,
+            GATEWAY_SERVER_KEY,
+            STARTER_SERVER,
+            DATABASE_BACKEND,
+            POSTGRES_ADDRESS,
+            POSTGRES_PORT,
+            POSTGRES_USER,
+            POSTGRES_PASSWORD,
             POSTGRES_DB
           script: |
             cd jdungeon-server
@@ -300,21 +300,21 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: |
-            DEBUG
-            RUN_AS_SERVER
-            GATEWAY_ADDRESS
-            GATEWAY_SERVER_PORT
-            SERVER_ADDRESS
-            SERVER_PORT
-            SERVER_MAX_PEERS
-            SERVER_CRT
-            SERVER_KEY
-            DATABASE_BACKEND
-            POSTGRES_ADDRESS
-            POSTGRES_PORT
-            POSTGRES_USER
-            POSTGRES_PASSWORD
+          envs: >
+            DEBUG,
+            RUN_AS_SERVER,
+            GATEWAY_ADDRESS,
+            GATEWAY_SERVER_PORT,
+            SERVER_ADDRESS,
+            SERVER_PORT,
+            SERVER_MAX_PEERS,
+            SERVER_CRT,
+            SERVER_KEY,
+            DATABASE_BACKEND,
+            POSTGRES_ADDRESS,
+            POSTGRES_PORT,
+            POSTGRES_USER,
+            POSTGRES_PASSWORD,
             POSTGRES_DB
           script: |
             cd jdungeon-server
