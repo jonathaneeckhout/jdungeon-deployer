@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   app:
-    image: mawakajaka/jdungeon-gateway:main
+    image: mawakajaka/jdungeon-server:main
     restart: always
     environment:
       DEBUG: ${DEBUG}
