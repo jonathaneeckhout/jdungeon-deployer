@@ -47,6 +47,7 @@ jobs:
           script: |
             cd jdungeon-database
             docker-compose down --rmi all --remove-orphans
+            docker-compose pull
             docker-compose up -d
 
   deploy-website:
@@ -76,6 +77,7 @@ jobs:
             cd jdungeon-website
             mkdir images
             docker-compose down --rmi all --remove-orphans
+            docker-compose pull
             docker-compose up -d
 
   build-linux:
@@ -263,6 +265,7 @@ jobs:
           script: |
             cd jdungeon-gateway
             docker-compose down --rmi all --remove-orphans
+            docker-compose pull
             docker-compose up -d
 
   deploy-server:
@@ -319,5 +322,6 @@ jobs:
           script: |
             cd jdungeon-server
             docker-compose down --rmi all --remove-orphans
+            docker-compose pull
             docker-compose up -d
 
