@@ -2,7 +2,7 @@ name: Deploy jdungeon
 on: [push]
 
 env:
-  GODOT_VERSION: "4.1.2"
+  GODOT_VERSION: "4.2"
   EXPORT_NAME: jdungeon
   PROJECT_PATH: ./
   JDUNGEON_REF: main
@@ -85,7 +85,7 @@ jobs:
     runs-on: ubuntu-22.04
     needs: generate-version-file
     container:
-      image: mawakajaka/godot:v1.0.0
+      image: mawakajaka/godot:v1.0.1
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -128,7 +128,7 @@ jobs:
     runs-on: ubuntu-22.04
     needs: generate-version-file
     container:
-      image: mawakajaka/godot:v1.0.0
+      image: mawakajaka/godot:v1.0.1
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -288,6 +288,7 @@ jobs:
           RUN_AS_SERVER: "true"
           GATEWAY_ADDRESS: ${{ vars.GATEWAY_ADDRESS }}
           GATEWAY_SERVER_PORT: ${{ vars.GATEWAY_SERVER_PORT }}
+          SERVER_MAP: "World"
           SERVER_ADDRESS: ${{vars.SERVER_ADDRESS }}
           SERVER_PORT: ${{ vars.SERVER_PORT }}
           SERVER_MAX_PEERS: 128
@@ -308,6 +309,7 @@ jobs:
             RUN_AS_SERVER,
             GATEWAY_ADDRESS,
             GATEWAY_SERVER_PORT,
+            SERVER_MAP,
             SERVER_ADDRESS,
             SERVER_PORT,
             SERVER_MAX_PEERS,
