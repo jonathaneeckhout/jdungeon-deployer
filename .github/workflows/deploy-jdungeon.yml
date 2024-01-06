@@ -233,7 +233,7 @@ jobs:
           GATEWAY_SERVER_MAX_PEERS: 1
           GATEWAY_SERVER_CRT: ${{ secrets.CERT_PATH }}
           GATEWAY_SERVER_KEY: ${{ secrets.KEY_PATH }}
-          STARTER_SERVER: "BaseCamp"
+          STARTER_SERVER: "World"
           DATABASE_BACKEND: "postgres"
           POSTGRES_ADDRESS: ${{ secrets.POSTGRES_ADDRESS }}
           POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
@@ -268,7 +268,7 @@ jobs:
             docker-compose pull
             docker-compose up -d
 
-  deploy-server-basecamp:
+  deploy-server:
     runs-on: ubuntu-latest
     needs: [deploy-database, deploy-gateway]
     steps:
@@ -288,7 +288,7 @@ jobs:
           RUN_AS_SERVER: "true"
           GATEWAY_ADDRESS: ${{ vars.GATEWAY_ADDRESS }}
           GATEWAY_SERVER_PORT: ${{ vars.GATEWAY_SERVER_PORT }}
-          SERVER_MAP: "BaseCamp"
+          SERVER_MAP: "World"
           SERVER_ADDRESS: ${{vars.SERVER_ADDRESS }}
           SERVER_PORT: ${{ vars.SERVER_PORT }}
           SERVER_MAX_PEERS: 128
@@ -326,3 +326,4 @@ jobs:
             docker-compose down --rmi all --remove-orphans
             docker-compose pull
             docker-compose up -d
+
